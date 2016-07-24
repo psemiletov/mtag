@@ -15,22 +15,22 @@ mtag rules_file extension
 
 Example: mtag rules.txt .ogg
 
-The rules file syntax is simple. The file MUST has the header line "; <optional text>", and then the set of blocks with tags. Each block is ended with "###".
+The rules file syntax is simple. The file MUST has the header line "; <optional text>", and then the set of blocks with tags. Each block is ended with "\#\#\#".
 
 Example:
 
 @album=testalbum
 @artist=Megapunkers
 @title=song one
-###
+\#\#\#
 @album=testalbum
 @artist=Megapunkers
 @title=song two
-###
+\#\#\#
 @album=testalbum
 @artist=Megapunkers
 @title=song three
-###
+\#\#\#
 
 So the first block will be applied to the first media file at the current directory, the second block to the second file, etc.
 
