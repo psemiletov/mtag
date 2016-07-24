@@ -11,7 +11,7 @@
 #include "libretta_string_utils.h"
 
 
-vector<string> &split (const string &s, char delim)
+vector<string> string_split (const string &s, char delim)
 {
   vector<string> result;
   stringstream stream (s);
@@ -22,6 +22,25 @@ vector<string> &split (const string &s, char delim)
         result.push_back (line);
        }
   
+  return result;
+}
+
+
+vector<string> string_split (string s, const string &delim)
+{
+  vector<string> result;
+  
+  size_t delen = delim.length();
+  size_t start = 0;
+  size_t end = s.find (delim);
+  
+  while (end != std::string::npos)
+       {
+        result.push_back (s.substr (start, end - start));
+        start = end + delen;
+        end = s.find (delim, start);
+    }
+    
   return result;
 }
 
