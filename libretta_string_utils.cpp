@@ -36,7 +36,11 @@ vector<string> string_split (string s, const string &delim)
   
   while (end != std::string::npos)
        {
-        result.push_back (s.substr (start, end - start));
+        string t = s.substr (start, end - start);
+        
+        if (! t.empty())
+           result.push_back (t);
+        
         start = end + delen;
         end = s.find (delim, start);
     }
