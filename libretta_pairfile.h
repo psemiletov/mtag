@@ -30,7 +30,7 @@ public:
   
   void save();
   
-  CPairFile (string fname, bool from_data = false);
+  CPairFile (const string &fname, bool from_data = false);
 };
 
 #endif

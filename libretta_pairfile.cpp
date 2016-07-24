@@ -104,27 +104,34 @@ string CPairFile::get_string (const string &key,
 }
 
 
-CPairFile::CPairFile (string fname, bool from_data)
+CPairFile::CPairFile (const string &fname, bool from_data)
 {
   if (from_data)
     {
      stringstream st (fname);
      string line;
-
-     while (getline (st, line, '\n')) 
+     
+     while (getline (st, line)) 
            {
-            int pos = line.find ("=");
-         
-            if (pos == string::npos)
+            if (line.empty())
                continue;
-         
-            string a;
-            string b;
+            
+           // cout << "line: " << line << endl;
+           
+            size_t pos = line.find ("=");
+      
+            //cout << "pos: " << pos << endl;
+                 
+            if (pos == string::npos)
+                continue;
         
-            a = line.substr (0, pos);
-            b = line.substr (pos + 1, line.size() - pos);
+            if (pos > line.size())
+                continue;
+                    
+            string a = line.substr (0, pos);
+            string b = line.substr (pos + 1, line.size() - pos);
 
-         //   cout << a << ":" << b << endl;
+            //cout << a << ":" << b << endl;
             
             values[a] = b;
            }
@@ -147,16 +154,13 @@ CPairFile::CPairFile (string fname, bool from_data)
 
   while (getline (infile, line))
         {
-         int pos = line.find ("=");
+         size_t pos = line.find ("=");
          
          if (pos == string::npos)
             continue;
-         
-         string a;
-         string b;
         
-         a = line.substr (0, pos);
-         b = line.substr (pos + 1, line.size() - pos);
+         string a = line.substr (0, pos);
+         string b = line.substr (pos + 1, line.size() - pos);
 
          values[a] = b;
         }

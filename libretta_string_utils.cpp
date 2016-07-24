@@ -43,8 +43,8 @@ vector<string> string_split (string s, const string &delim)
         
         start = end + delen;
         end = s.find (delim, start);
-    }
-    
+    }  
+  
   return result;
 }
 
