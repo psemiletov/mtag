@@ -37,12 +37,17 @@ int main (int argc, char *argv[])
   
   string rules_file_data = string_file_load (rules_file);
  
- // rules_file_data = rules_file_data.insert (0, ";\n");
+  /*
+   Nasty hack - the first line at the tags block, by the mystical reason, cannot be
+   parsed properly, so we programmatically add the additional line: 
+   */
+  
+  rules_file_data = rules_file_data.insert (3, "@test=test\n"); 
    
   
   vector<string> vs = string_split (rules_file_data, "###");
    
- // cout << "vs.size: " << vs.size() << endl;
+//  cout << "vs.size: " << vs.size() << endl;
   
  
 
