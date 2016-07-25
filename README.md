@@ -23,10 +23,12 @@ Example:
 @artist=Megapunkers
 @title=song one
 \#\#\#
+
 @album=testalbum
 @artist=Megapunkers
 @title=song two
 \#\#\#
+
 @album=testalbum
 @artist=Megapunkers
 @title=song three
