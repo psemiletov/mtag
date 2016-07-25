@@ -1,0 +1,12 @@
+﻿@album=testalbum
+@artist=Петр Семилетов
+@title=один
+###
+@artist=Петр Семилетов
+@album=testalbum
+@title=два
+###
+@artist=Петр Семилетов
+@album=testalbum
+@title=три
+###
