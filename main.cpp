@@ -1,3 +1,11 @@
+/*
+ MTAG (https://github.com/psemiletov/mtag)
+ 
+ This code is Public Domain.
+ 
+ Peter Semiletov <tea@list.ru>, http://semiletov.org
+*/
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -19,21 +27,25 @@ int main (int argc, char *argv[])
 {
   if (argc < 3) 
      {
-      cout << "mtag RULESFILE filemask" <<  endl;
+      cout << "Usage: mtag RULESFILE files_extension. Read README for the details." << endl;
       return 0;
      }
  
-  cout << "START" <<  endl;
- 
+  cout << "mtag START" << endl;
  
   string rules_file = argv[1];
-  string mask = argv[2];
-
+  string ext = argv[2];
+  ext = "." + ext;
   
-  std::vector <string> files = files_get_list (current_path(), mask);
-  
+  std::vector <string> files = files_get_list (current_path(), ext);
   std::sort (files.begin(), files.end());
-  
+
+
+  if (files.size() == 0)
+    {
+     cout << "No files to process! Please provide some files. Read README for the details." << endl;
+     return 0;
+    }
   
   string rules_file_data = string_file_load (rules_file);
  
@@ -46,11 +58,7 @@ int main (int argc, char *argv[])
    
   
   vector<string> vs = string_split (rules_file_data, "###");
-   
-//  cout << "vs.size: " << vs.size() << endl;
   
- 
-
   for (size_t i = 0; i < vs.size(); i++)
      {
       string fname = files[i];
@@ -63,57 +71,39 @@ int main (int argc, char *argv[])
   
       for (auto & kvp : pf.values)
           {
-
-  //         cout << kvp.first << " is " << pf.values[kvp.first] << endl;
-           
            string key = kvp.first;
            string val = pf.values[kvp.first];
            
            cout << key << " --------------------- " << val << endl;
-     
+
+           TagLib::String ts (val, TagLib::String::Type::UTF8);
+           
            if (key == "@artist")
-              {
-               TagLib::String ts (val, TagLib::String::Type::UTF8);
                f.tag()->setArtist (ts);
-              }  
            else            
            if (key == "@title")
-              {
-               TagLib::String ts (val, TagLib::String::Type::UTF8);
                f.tag()->setTitle (ts);
-              }  
            else            
            if (key == "@album")
-              {
-               TagLib::String ts (val, TagLib::String::Type::UTF8);
                f.tag()->setAlbum (ts);
-              }  
            else            
            if (key == "@genre")
-              {
-               TagLib::String ts (val, TagLib::String::Type::UTF8);
                f.tag()->setGenre (ts);
-              }  
            else            
            if (key == "@comment")
-              {
-               TagLib::String ts (val, TagLib::String::Type::UTF8);
                f.tag()->setComment (ts);
-              }  
            else            
            if (key == "@year")
                f.tag()->setYear (atoi(val.c_str()));
            else            
            if (key == "@track")
                f.tag()->setTrack (atoi(val.c_str()));
-   
           }
 
          f.save();
    
-         cout << "tag saved" << endl;
-      
-     }
+         cout << "tag: saved" << endl;
+        }
   
   
   return 0;
