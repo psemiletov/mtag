@@ -1,6 +1,6 @@
 # mtag
 
-EN: mtag is the command-line tool for media files tagging. It can use the text file template to tag the multiply sets of media files. You can use just one template for Ogg, MP3, and FLAC album versions. 
+EN: mtag is the command-line tool for media files tagging. It can use the text file template to tag the multiply sets of media files. You can apply the same template for Ogg, MP3, and FLAC album versions. 
 
 To be tagged correctly, the media files names needs to be named in the alphabetical order, i.e. for example:
 
