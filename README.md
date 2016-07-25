@@ -125,6 +125,6 @@ Credits/Кредиты
 
 Program site/сайт: https://github.com/psemiletov/mtag
 
-Developers/разработчики:
+Developer/разработчик:
 Petr Semiletov <tea@list.ru>, http://semiletov.org
 
