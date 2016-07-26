@@ -5,13 +5,17 @@ EN: mtag is the command-line tool for media files tagging. It can use the text f
 To be tagged correctly, the media files names needs to be named in the alphabetical order, i.e. for example:
 
 01-first-song.ogg 
+
 01-second-song.ogg 
+
 01-third-song.ogg 
 
 RU: mtag это утилита для записи тэгов в мультимедийные файлы. mtag использует файл-шаблон с тэгами, который можно применять к нескольким наборам файлов в разных форматах. Иначе говоря, одним шаблоном вы запишете тэги в варианты альбома в MP3, Ogg, FLAC. Файлы должны быть именованы по алфавиту, например:
 
 01-first-song.ogg 
+
 01-second-song.ogg 
+
 01-third-song.ogg 
 
 
