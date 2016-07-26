@@ -31,18 +31,27 @@ Example: mtag rules.txt ogg
 The rules file must be in UTF-8 encoding. The rules file syntax is simple - the set of blocks with tags. Each block is ended with "\#\#\#". Example:
 
 @album=testalbum
+
 @artist=Megapunkers
+
 @title=song one
+
 \#\#\#
 
 @album=testalbum
+
 @artist=Megapunkers
+
 @title=song two
+
 \#\#\#
 
 @album=testalbum
+
 @artist=Megapunkers
+
 @title=song three
+
 \#\#\#
 
 So the first block will be applied to the first media file at the current directory, the second block to the second file, etc. 
@@ -89,6 +98,7 @@ EN:
 As usual, under the root (mtag will be installed to /usr/local/bin):
 
 make
+
 make install
 
 To uninstall:
@@ -101,6 +111,7 @@ RU:
 Как обычно, под рутом (mtag будет установлен в /usr/local/bin):
 
 make
+
 make install
 
 А чтобы удалить:
