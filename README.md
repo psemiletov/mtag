@@ -4,18 +4,16 @@ EN: mtag is the command-line tool for media files tagging. It can use the text f
 
 To be tagged correctly, the media files names needs to be named in the alphabetical order, i.e. for example:
 
-`01-first-song.ogg 
-01-second-song.ogg 
-01-third-song.ogg`
+01-first-song.ogg  
+01-second-song.ogg  
+01-third-song.ogg  
+
 
 RU: mtag это утилита для записи тэгов в мультимедийные файлы. mtag использует файл-шаблон с тэгами, который можно применять к нескольким наборам файлов в разных форматах. Иначе говоря, одним шаблоном вы запишете тэги в варианты альбома в MP3, Ogg, FLAC. Файлы должны быть именованы по алфавиту, например:
 
-01-first-song.ogg 
-
-01-second-song.ogg 
-
-01-third-song.ogg 
-
+01-first-song.ogg  
+01-second-song.ogg  
+01-third-song.ogg
 
 Usage/Использование:
 ------------
@@ -28,28 +26,17 @@ Example: mtag rules.txt ogg
 
 The rules file must be in UTF-8 encoding. The rules file syntax is simple - the set of blocks with tags. Each block is ended with "\#\#\#". Example:
 
-@album=testalbum
-
-@artist=Megapunkers
-
-@title=song one
-
-\#\#\#
-
-@album=testalbum
-
-@artist=Megapunkers
-
-@title=song two
-
-\#\#\#
-
-@album=testalbum
-
-@artist=Megapunkers
-
-@title=song three
-
+@album=testalbum  
+@artist=Megapunkers  
+@title=song one  
+\#\#\#  
+@album=testalbum  
+@artist=Megapunkers  
+@title=song two  
+\#\#\#  
+@album=testalbum  
+@artist=Megapunkers  
+@title=song three  
 \#\#\#
 
 So the first block will be applied to the first media file at the current directory, the second block to the second file, etc. 
@@ -64,19 +51,17 @@ mtag файл_с_правилами расширение
 
 Файл правил должен быть в кодировке UTF-8. Синтаксис файла прост - файл состоит из блоков тэгов, и каждый блок оканчивается "\#\#\#". Пример:
 
-@album=проба
-@artist=никто
-@title=песенка первая
-\#\#\#
-
-@album=проба
-@artist=никто
-@title=песенка вторая
-\#\#\#
-
-@album=testalbum
-@artist=никто
-@title=песня третья
+@album=проба  
+@artist=никто  
+@title=песенка первая  
+\#\#\#  
+@album=проба  
+@artist=никто  
+@title=песенка вторая  
+\#\#\#  
+@album=testalbum  
+@artist=никто  
+@title=песня третья  
 \#\#\#
 
 Первый блок будет применен к первому файлу (с указанным расширением) в текущем каталоге, второй ко второму, и так далее.
@@ -95,8 +80,7 @@ EN:
 
 As usual, under the root (mtag will be installed to /usr/local/bin):
 
-make
-
+make  
 make install
 
 To uninstall:
@@ -108,8 +92,7 @@ RU:
 
 Как обычно, под рутом (mtag будет установлен в /usr/local/bin):
 
-make
-
+make  
 make install
 
 А чтобы удалить:
@@ -140,4 +123,3 @@ Program site/сайт: https://github.com/psemiletov/mtag
 
 Developer/разработчик:
 Petr Semiletov <tea@list.ru>, http://semiletov.org
-
