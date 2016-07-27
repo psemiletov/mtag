@@ -110,12 +110,19 @@ int main (int argc, char *argv[])
            else            
            if (key == "@comment")
                f.tag()->setComment (ts);
-           else            
+          /* else            
            if (key == "@year")
                f.tag()->setYear (atoi(val.c_str()));
            else            
            if (key == "@track")
-               f.tag()->setTrack (atoi(val.c_str()));
+               f.tag()->setTrack (atoi(val.c_str()));*/
+           else            
+           if (key == "@year")
+               f.tag()->setYear (stoi (val));
+           else            
+           if (key == "@track")
+               f.tag()->setTrack (stoi (val));
+          
           }
 
          f.save();
