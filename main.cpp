@@ -166,7 +166,6 @@ void extract_tags (const string &rules_file, const string &ext)
    
       unsigned int x = 0;
    
-      
       x = f.tag()->year();
       if (x != 0)
         {
@@ -175,9 +174,6 @@ void extract_tags (const string &rules_file, const string &ext)
          pair += std::to_string (x);
          vs.push_back (pair);
         } 
-   
-       cout << "x:" << x << endl;
-      
    
       x = f.tag()->track();
       if (x != 0)
@@ -207,9 +203,8 @@ void extract_tags (const string &rules_file, const string &ext)
     }   
   else 
       cout << "Unable to write output file" << endl;
-
-     
 }
+
 
 int main (int argc, char *argv[])
 {
@@ -218,7 +213,10 @@ int main (int argc, char *argv[])
       cout << "Usage: mtag RULESFILE files_extension. Read README for the details." << endl;
       return 0;
      }
- 
+
+  cout << "mtag: the command line tool for media files tagging" << endl;
+  cout << "https://github.com/psemiletov/mtag" << endl;
+          
   cout << "mtag START" << endl;
  
   string rules_file = argv[1];
@@ -231,17 +229,12 @@ int main (int argc, char *argv[])
      return 0;   
     }
   
-  //
-  
   string mode = argv[3];
   if (mode == "extract")  
     {
      cout << "extract" << endl;
      extract_tags (rules_file, ext);
-   
     }
-       
-  
   
   return 0;
 }

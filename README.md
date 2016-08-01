@@ -20,6 +20,8 @@ Usage/Использование:
 
 EN:
 
+To tag some files, use the command line:
+
 mtag rules_file extension
 
 Example: mtag rules.txt ogg
@@ -43,8 +45,18 @@ So the first block will be applied to the first media file at the current direct
 
 The list of available tags: @artist, @title, @album, @genre, @comment, @year, @track.
 
+To extract the tags from the media files to the rules file, use the "extract" option:
+
+mtag OUTPUTFILE extension extract
+
+For example:
+
+mtag RULES ogg extract
+
+
 RU:
 
+Чтобы записать тэги в файлы, формат командной строки таков:
 mtag файл_с_правилами расширение
 
 Пример: mtag rules.txt ogg
