@@ -139,7 +139,7 @@ void extract_tags (const string &rules_file, const string &ext)
       ts = f.tag()->album();
       if (! ts.isEmpty())
         {
-         string pair = "album";
+         string pair = "@album";
          pair += "=";
          pair += ts.toCString(true);
          vs.push_back (pair);
@@ -148,7 +148,7 @@ void extract_tags (const string &rules_file, const string &ext)
       ts = f.tag()->comment();
       if (! ts.isEmpty())
         {
-         string pair = "comment";
+         string pair = "@comment";
          pair += "=";
          pair += ts.toCString(true);
          vs.push_back (pair);
@@ -158,7 +158,7 @@ void extract_tags (const string &rules_file, const string &ext)
       ts = f.tag()->genre();
       if (! ts.isEmpty())
         {
-         string pair = "genre";
+         string pair = "@genre";
          pair += "=";
          pair += ts.toCString(true);
          vs.push_back (pair);
@@ -169,7 +169,7 @@ void extract_tags (const string &rules_file, const string &ext)
       x = f.tag()->year();
       if (x != 0)
         {
-         string pair = "year";
+         string pair = "@year";
          pair += "=";
          pair += std::to_string (x);
          vs.push_back (pair);
@@ -178,7 +178,7 @@ void extract_tags (const string &rules_file, const string &ext)
       x = f.tag()->track();
       if (x != 0)
         {
-         string pair = "track";
+         string pair = "@track";
          pair += "=";
          pair += std::to_string (x);
          vs.push_back (pair);
