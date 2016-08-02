@@ -11,6 +11,8 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <regex>
+
 
 #include "libretta_utils.h"
 #include "libretta_string_utils.h"
@@ -23,6 +25,98 @@
 
 using namespace std;
 using namespace TagLib;
+
+using std::regex;
+using std::regex_replace;
+
+void files_rename_by_tags (const string &rules_file, const string &ext, const string &templte)
+{
+  std::vector <string> files = files_get_list (current_path(), ext);
+  std::sort (files.begin(), files.end());
+  if (files.size() == 0)
+    {
+     cout << "No files to process! Please provide some files. Read README for the details." << endl;
+     return;
+    }
+
+  
+  //vector<string> vs;
+  
+  for (size_t i = 0; i < files.size(); i++)
+     {
+      string fname = files[i];
+          
+      cout << "rename:" << fname << endl;
+      
+      size_t sep = fname.rfind ("/");
+      if (sep == 0)
+          continue;
+      
+      string dir = fname.substr (0, sep + 1);
+      string name = fname.substr (sep + 1);
+      
+      cout << "dir:" << dir << " name:" << name << endl;
+      
+      string nameout = templte; 
+     
+      //size_t x = nameout.find ("@fname");
+      //nameout = nameout.replace (x, string ("@fname").length(), name);
+      
+      nameout = string_replace_all (nameout, "@fname", name);
+      
+      //cout << "nameout: " << nameout << endl;
+         
+            
+      
+      TagLib::FileRef f (fname.c_str());
+      
+      if (f.tag()->properties().size() == 0)
+          continue;
+      
+      TagLib::String ts;
+
+      
+      ts = f.tag()->artist();
+      if (! ts.isEmpty())
+         nameout = string_replace_all (nameout, "@artist", ts.toCString(true));
+      
+      ts = f.tag()->title();
+      if (! ts.isEmpty())
+         nameout = string_replace_all (nameout, "@title", ts.toCString(true));
+
+      ts = f.tag()->album();
+      if (! ts.isEmpty())
+         nameout = string_replace_all (nameout, "@album", ts.toCString(true));
+      
+      ts = f.tag()->comment();
+      if (! ts.isEmpty())
+         nameout = string_replace_all (nameout, "@comment", ts.toCString(true));
+      
+      ts = f.tag()->genre();
+      if (! ts.isEmpty())
+         nameout = string_replace_all (nameout, "@genre", ts.toCString(true));
+      
+      unsigned int x = 0;
+   
+      x = f.tag()->year();
+      if (x != 0)
+         nameout = string_replace_all (nameout, "@year", std::to_string (x));
+   
+      x = f.tag()->track();
+      if (x != 0)
+         nameout = string_replace_all (nameout, "@track", std::to_string (x));
+     
+      nameout = dir + nameout;
+      
+      cout << "nameout: " << nameout << endl;
+       
+      cout << "tags: renamed" << endl;
+     }
+  
+  }
+
+ 
+ 
 
 
 void write_tags (const string &rules_file, const string &ext)
@@ -233,11 +327,19 @@ int main (int argc, char *argv[])
     }
   
   string mode = argv[3];
+
   if (mode == "extract")  
     {
      cout << "extract" << endl;
      extract_tags (rules_file, ext);
     }
-  
+  else  
+  if (mode == "rename" && argc == 5)
+    {
+     cout << "rename" << endl;
+     string templte = argv[4];
+     files_rename_by_tags (rules_file, ext, templte);
+  }
+
   return 0;
 }

@@ -57,3 +57,19 @@ string string_file_load (const string &fname)
 
  return s;
 }
+
+
+string string_replace_all (const string &s, const string &from, const string &to)
+{
+  string result = s;
+  size_t i = 0;
+  do  
+    {
+     i = result.find (from);
+     if (i != string::npos)
+         result = result.replace (i, from.length(), to);
+    }
+  while (i != string::npos);
+        
+  return result;   
+}
