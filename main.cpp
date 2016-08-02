@@ -188,12 +188,12 @@ void extract_tags (const string &rules_file, const string &ext)
         } 
    
    
-    //  vs.push_back ("###");
+      vs.push_back ("###");
       
       cout << "tags: extracted" << endl;
      }
      
-  vs.pop_back();   
+  //vs.pop_back();   
      
   ofstream outputFile (rules_file);
 
