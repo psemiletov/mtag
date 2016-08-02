@@ -11,7 +11,6 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-#include <regex>
 
 
 #include "libretta_utils.h"
@@ -26,21 +25,67 @@
 using namespace std;
 using namespace TagLib;
 
-using std::regex;
-using std::regex_replace;
+
+
+
+string process_counter (const string &val, const char &counter_char, size_t index)
+{
+  string result = val;
+  
+  size_t i = val.find (counter_char); 
+  
+  if (i == string::npos)
+       return result;
+  
+  size_t len = val.length();
+   
+  for (size_t j = i; j < len; j++)
+      {
+       if (val[j] != counter_char)
+         {
+          len = j - i;
+          break; //how many digits in the counter
+         } 
+       else //to properly parse the counter at the end of the string
+           if ((j + 1) == len)
+             {
+              len = j - i + 1;
+              break; 
+           }
+      } 
+  
+   
+  string str_counter (len, counter_char);
+  
+  string outfmt = "%0";
+  outfmt += std::to_string (len);
+  outfmt += "d";
+  
+  char buff [256];
+  snprintf (buff, sizeof (buff), outfmt.data(), index);
+  string bstr = buff;
+  
+  cout << "string bstr ????????????????????? " << bstr <<  endl;
+  
+  //printf("%09d", 762);
+  
+  result = string_replace_all (result, str_counter, std::to_string (index));
+  
+  return result;
+}
+
 
 void files_rename_by_tags (const string &rules_file, const string &ext, const string &templte)
 {
+ 
   std::vector <string> files = files_get_list (current_path(), ext);
   std::sort (files.begin(), files.end());
+
   if (files.size() == 0)
     {
      cout << "No files to process! Please provide some files. Read README for the details." << endl;
      return;
     }
-
-  
-  //vector<string> vs;
   
   for (size_t i = 0; i < files.size(); i++)
      {
@@ -55,18 +100,11 @@ void files_rename_by_tags (const string &rules_file, const string &ext, const st
       string dir = fname.substr (0, sep + 1);
       string name = fname.substr (sep + 1);
       
-      cout << "dir:" << dir << " name:" << name << endl;
-      
-      string nameout = templte; 
      
-      //size_t x = nameout.find ("@fname");
-      //nameout = nameout.replace (x, string ("@fname").length(), name);
+      string nameout = templte; 
       
       nameout = string_replace_all (nameout, "@fname", name);
       
-      //cout << "nameout: " << nameout << endl;
-         
-            
       
       TagLib::FileRef f (fname.c_str());
       
@@ -106,11 +144,15 @@ void files_rename_by_tags (const string &rules_file, const string &ext, const st
       if (x != 0)
          nameout = string_replace_all (nameout, "@track", std::to_string (x));
      
+      
+      nameout = process_counter (nameout, '#', i);
+      
+      
       nameout = dir + nameout;
       
       cout << "nameout: " << nameout << endl;
        
-      cout << "tags: renamed" << endl;
+      cout << "files: renamed" << endl;
      }
   
   }
