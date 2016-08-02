@@ -19,7 +19,7 @@
 
 #include <fileref.h>
 #include <tstring.h>
-
+#include <tpropertymap.h>
 
 using namespace std;
 using namespace TagLib;
@@ -116,6 +116,9 @@ void extract_tags (const string &rules_file, const string &ext)
       
       TagLib::FileRef f (fname.c_str());
       
+      if (f.tag()->properties().size() == 0)
+          continue;
+      
       TagLib::String ts;
       
       ts = f.tag()->artist();
@@ -185,7 +188,7 @@ void extract_tags (const string &rules_file, const string &ext)
         } 
    
    
-      vs.push_back ("###");
+    //  vs.push_back ("###");
       
       cout << "tags: extracted" << endl;
      }
