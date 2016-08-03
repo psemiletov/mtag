@@ -65,17 +65,13 @@ string process_counter (const string &val, const char &counter_char, size_t inde
   snprintf (buff, sizeof (buff), outfmt.data(), index);
   string bstr = buff;
   
-  cout << "string bstr ????????????????????? " << bstr <<  endl;
-  
-  //printf("%09d", 762);
-  
   result = string_replace_all (result, str_counter, std::to_string (index));
   
   return result;
 }
 
 
-void files_rename_by_tags (const string &rules_file, const string &ext, const string &templte)
+void files_rename_by_tags (const string &ext, const string &templte)
 {
  
   std::vector <string> files = files_get_list (current_path(), ext);
@@ -146,7 +142,6 @@ void files_rename_by_tags (const string &rules_file, const string &ext, const st
      
       
       nameout = process_counter (nameout, '#', i);
-      
       
       nameout = dir + nameout;
       
@@ -349,38 +344,41 @@ int main (int argc, char *argv[])
 {
   if (argc < 3) 
      {
-      cout << "Usage: mtag RULESFILE files_extension. Read README for the details." << endl;
+      cout << "Too few arguments. Read README for the details." << endl;
       return 0;
      }
 
+  cout << "mtag 2.1" << endl;
   cout << "mtag: the command line tool for media files tagging" << endl;
+  cout << "by Petr Semiletov" << endl;
   cout << "https://github.com/psemiletov/mtag" << endl;
           
   cout << "mtag START" << endl;
  
-  string rules_file = argv[1];
-  string ext = argv[2];
-  ext = "." + ext;
+  string command = argv[1];
   
-  if (argc < 4)
-    {
-     write_tags (rules_file, ext);
-     return 0;   
-    }
-  
-  string mode = argv[3];
-
-  if (mode == "extract")  
+  if (command == "apply")
+     {
+      string rules_file = argv[2];
+      string ext = argv[3];
+      ext = "." + ext;
+      write_tags (rules_file, ext);
+     }
+  else
+  if (command == "extract")
     {
      cout << "extract" << endl;
+     string rules_file = argv[2];
+     string ext = argv[3];
      extract_tags (rules_file, ext);
     }
-  else  
-  if (mode == "rename" && argc == 5)
+  else
+  if (command == "rename")
     {
      cout << "rename" << endl;
-     string templte = argv[4];
-     files_rename_by_tags (rules_file, ext, templte);
+     string templte = argv[2];
+     string ext = argv[3];
+     files_rename_by_tags (ext, templte);
   }
 
   return 0;

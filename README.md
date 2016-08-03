@@ -2,29 +2,25 @@
 
 EN: mtag is the command-line tool for media files tagging. It can use the text file template to tag the multiply sets of media files. You can apply the same template for Ogg, MP3, and FLAC album versions. 
 
-To be tagged correctly, the media files names needs to be named in the alphabetical order, i.e. for example:
 
-01-first-song.ogg  
-01-second-song.ogg  
-01-third-song.ogg  
-
-
-RU: mtag это утилита для записи тэгов в мультимедийные файлы. mtag использует файл-шаблон с тэгами, который можно применять к нескольким наборам файлов в разных форматах. Иначе говоря, одним шаблоном вы запишете тэги в варианты альбома в MP3, Ogg, FLAC. Файлы должны быть именованы по алфавиту, например:
-
-01-first-song.ogg  
-01-second-song.ogg  
-01-third-song.ogg
+RU: mtag это утилита для записи тэгов в мультимедийные файлы. mtag использует файл-шаблон с тэгами, который можно применять к нескольким наборам файлов в разных форматах. Иначе говоря, одним шаблоном вы запишете тэги в варианты альбома в MP3, Ogg, FLAC.
 
 Usage/Использование:
 ------------
 
 EN:
 
-To tag some files, use the command line:
+1. To tag some files, use the command line:
 
-mtag rules_file extension
+mtag apply rules_file extension
 
-Example: mtag rules.txt ogg
+Example: mtag apply rules.txt ogg
+
+To be tagged correctly, the media files names needs to be named in the alphabetical order, i.e. for example:
+
+01-first-song.ogg  
+01-second-song.ogg  
+01-third-song.ogg  
 
 The rules file must be in UTF-8 encoding. The rules file syntax is simple - the set of blocks with tags. Each block is ended with "\#\#\#". Example:
 
@@ -45,21 +41,28 @@ So the first block will be applied to the first media file at the current direct
 
 The list of available tags: @artist, @title, @album, @genre, @comment, @year, @track.
 
-To extract the tags from the media files to the rules file, use the "extract" option:
+2. To extract the tags from the media files to the rules file, use the "extract" option:
 
-mtag OUTPUTFILE extension extract
+mtag extract OUTPUTFILE extension
 
 For example:
 
-mtag RULES ogg extract
+mtag extract RULES ogg 
 
 
 RU:
 
 Чтобы записать тэги в файлы, формат командной строки таков:
-mtag файл_с_правилами расширение
 
-Пример: mtag rules.txt ogg
+mtag apply файл_с_правилами расширение
+
+Пример: mtag apply rules.txt ogg
+
+Звуковые файлы должны быть именованы по алфавиту, например:
+
+01-first-song.ogg  
+01-second-song.ogg  
+01-third-song.ogg
 
 Файл правил должен быть в кодировке UTF-8. Синтаксис файла прост - файл состоит из блоков тэгов, и каждый блок оканчивается "\#\#\#". Пример:
 
@@ -79,6 +82,8 @@ mtag файл_с_правилами расширение
 Первый блок будет применен к первому файлу (с указанным расширением) в текущем каталоге, второй ко второму, и так далее.
 
 Список доступных тэгов: @artist, @title, @album, @genre, @comment, @year, @track.
+
+
 
 Requirements/Зависимости:
 ------------
