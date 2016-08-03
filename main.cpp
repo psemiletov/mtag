@@ -143,7 +143,7 @@ void files_rename_by_tags (const string &ext, const string &templte)
          nameout = string_replace_all (nameout, "@track", std::to_string (x));
      
       
-      nameout = process_counter (nameout, '#', i);
+      nameout = process_counter (nameout, '#', i + 1);
       
       nameout = dir + nameout;
       
