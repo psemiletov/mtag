@@ -65,8 +65,10 @@ string process_counter (const string &val, const char &counter_char, size_t inde
   snprintf (buff, sizeof (buff), outfmt.data(), index);
   string bstr = buff;
   
-  result = string_replace_all (result, str_counter, std::to_string (index));
-  
+ // result = string_replace_all (result, str_counter, std::to_string (index));
+ 
+  result = string_replace_all (result, str_counter, bstr);
+ 
   return result;
 }
 
@@ -147,13 +149,12 @@ void files_rename_by_tags (const string &ext, const string &templte)
       
       cout << nameout << endl;
       
-/*     
+     
       int r = rename (fname.data(), nameout.data());
       if (! r)
          cout << "cannot rename " << fname << " > " << nameout << endl;
       else
           cout << fname << " > " << nameout << endl;
-      */
       
      }
      

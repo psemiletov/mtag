@@ -1,9 +1,9 @@
 # mtag
 
-EN: mtag is the command-line tool for media files tagging. It can use the text file template to tag the multiply sets of media files. You can apply the same template for Ogg, MP3, and FLAC album versions. 
+EN: mtag is the command-line tool for media files tagging. It can use the text file template to tag the multiply sets of media files. You can apply the same template for Ogg, MP3, and FLAC album versions. mtag can also extract the tags to the text file and rename files according to their tags.
 
 
-RU: mtag это утилита для записи тэгов в мультимедийные файлы. mtag использует файл-шаблон с тэгами, который можно применять к нескольким наборам файлов в разных форматах. Иначе говоря, одним шаблоном вы запишете тэги в варианты альбома в MP3, Ogg, FLAC.
+RU: mtag это утилита для записи тэгов в мультимедийные файлы. mtag использует файл-шаблон с тэгами, который можно применять к нескольким наборам файлов в разных форматах. Иначе говоря, одним шаблоном вы запишете тэги в варианты альбома в MP3, Ogg, FLAC. mtag также умеет извлекать тэги из файлов (в шаблон) и переименовывать файлы на основе записанных в них тэгов.
 
 Usage/Использование:
 ------------
@@ -49,6 +49,18 @@ For example:
 
 mtag extract RULES ogg 
 
+**To rename files** according their tags, use:
+
+mtag rename "template string" extension
+
+The template string can contain any tags macros (i.e. @artist, @title, etc.), @fname macro for the original file name, and \# as the numbers counter (the count of \# is the leading zeroes count minus 1);
+
+Examples:
+
+mtag rename "\#\# - @title" mp3  
+mtag rename "\#\# - @artist - @title" mp3  
+mtag rename "\#\# - @fname" mp3  
+
 
 RU:
 
@@ -87,10 +99,24 @@ mtag apply файл_с_правилами расширение
 
 mtag extract RULES ogg 
 
+**Чтобы переименовать файлы** согласно записанным в них тэгам, используйте команду:
+
+mtag rename "строка шаблона" расширение
+
+Строка шаблона может содержать любые тэговые макросы (т.е. @artist, @title, и прочие), @fname в качестве заменителя исходного имени файла, и \# как счетчик (количество \# означает число дополяющих нулей).
+
+Примеры:
+
+mtag rename "\#\# - @title" mp3   
+mtag rename "\#\# - @artist - @title" mp3  
+mtag rename "\#\# - @fname" mp3  
+
+
 Requirements/Зависимости:
 ------------
 
 Taglib, C++ 11
+
 
 Installation/Установка:
 ------------
