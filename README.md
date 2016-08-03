@@ -10,7 +10,7 @@ Usage/Использование:
 
 EN:
 
-1. To tag some files, use the command line:
+*To tag some files*, use the command line:
 
 mtag apply rules_file extension
 
@@ -41,7 +41,7 @@ So the first block will be applied to the first media file at the current direct
 
 The list of available tags: @artist, @title, @album, @genre, @comment, @year, @track.
 
-2. To extract the tags from the media files to the rules file, use the "extract" option:
+*To extract the tags* from the media files to the rules file, use the "extract" option:
 
 mtag extract OUTPUTFILE extension
 
@@ -52,7 +52,7 @@ mtag extract RULES ogg
 
 RU:
 
-1. Чтобы записать тэги в файлы, формат командной строки таков:
+*Чтобы записать тэги* в файлы, формат командной строки таков:
 
 mtag apply файл_с_правилами расширение
 
@@ -83,7 +83,7 @@ mtag apply файл_с_правилами расширение
 
 Список доступных тэгов: @artist, @title, @album, @genre, @comment, @year, @track.
 
-2. Чтобы извлечь тэги из файлов в файл правил, к командной строке надо добавить ключик "extract", например:
+*Чтобы извлечь тэги из файлов в файл правил*, к командной строке надо добавить ключик "extract", например:
 
 mtag extract RULES ogg 
 
