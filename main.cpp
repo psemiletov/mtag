@@ -11,7 +11,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
-
+#include <cstdio>
 
 #include "libretta_utils.h"
 #include "libretta_string_utils.h"
@@ -145,12 +145,21 @@ void files_rename_by_tags (const string &ext, const string &templte)
       
       nameout = dir + nameout;
       
-      cout << "nameout: " << nameout << endl;
-       
-      cout << "files: renamed" << endl;
+      cout << nameout << endl;
+      
+/*     
+      int r = rename (fname.data(), nameout.data());
+      if (! r)
+         cout << "cannot rename " << fname << " > " << nameout << endl;
+      else
+          cout << fname << " > " << nameout << endl;
+      */
+      
      }
+     
+  cout << "files: renamed" << endl;
   
-  }
+}
 
  
  
@@ -287,7 +296,6 @@ void extract_tags (const string &rules_file, const string &ext)
          pair += ts.toCString(true);
          vs.push_back (pair);
         } 
-   
    
       ts = f.tag()->genre();
       if (! ts.isEmpty())
