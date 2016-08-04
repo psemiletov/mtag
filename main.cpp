@@ -73,6 +73,80 @@ string process_counter (const string &val, const char &counter_char, size_t inde
 }
 
 
+void files_list_tags (const string &ext, const string &templte)
+{
+ 
+  std::vector <string> files = files_get_list (current_path(), ext);
+  std::sort (files.begin(), files.end());
+
+  if (files.size() == 0)
+    {
+     cout << "No files to process! Please provide some files. Read README for the details." << endl;
+     return;
+    }
+  
+  for (size_t i = 0; i < files.size(); i++)
+     {
+      string fname = files[i];
+      
+      size_t sep = fname.rfind ("/");
+      if (sep == 0)
+          continue;
+      
+      string dir = fname.substr (0, sep + 1);
+      string name = fname.substr (sep + 1);
+     
+      string sout = templte; 
+      
+      sout = string_replace_all (sout, "@fname", name);
+    
+      
+      TagLib::FileRef f (fname.c_str());
+      
+      if (f.tag()->properties().size() == 0)
+          continue;
+      
+      TagLib::String ts;
+
+      
+      ts = f.tag()->artist();
+      if (! ts.isEmpty())
+         sout = string_replace_all (sout, "@artist", ts.toCString(true));
+      
+      ts = f.tag()->title();
+      if (! ts.isEmpty())
+         sout = string_replace_all (sout, "@title", ts.toCString(true));
+
+      ts = f.tag()->album();
+      if (! ts.isEmpty())
+         sout = string_replace_all (sout, "@album", ts.toCString(true));
+      
+      ts = f.tag()->comment();
+      if (! ts.isEmpty())
+         sout = string_replace_all (sout, "@comment", ts.toCString(true));
+      
+      ts = f.tag()->genre();
+      if (! ts.isEmpty())
+         sout = string_replace_all (sout, "@genre", ts.toCString(true));
+      
+      unsigned int x = 0;
+   
+      x = f.tag()->year();
+      if (x != 0)
+         sout = string_replace_all (sout, "@year", std::to_string (x));
+   
+      x = f.tag()->track();
+      if (x != 0)
+         sout = string_replace_all (sout, "@track", std::to_string (x));
+     
+      
+      sout = process_counter (sout, '#', i + 1);
+      
+      cout << sout << endl;
+     }
+}
+
+
 void files_rename_by_tags (const string &ext, const string &templte)
 {
  
@@ -147,9 +221,8 @@ void files_rename_by_tags (const string &ext, const string &templte)
       
       nameout = dir + nameout;
       
-      cout << nameout << endl;
+//      cout << nameout << endl;
       
-     
       int r = rename (fname.data(), nameout.data());
       if (! r)
          cout << "cannot rename " << fname << " > " << nameout << endl;
@@ -159,11 +232,7 @@ void files_rename_by_tags (const string &ext, const string &templte)
      }
      
   cout << "files: renamed" << endl;
-  
 }
-
- 
- 
 
 
 void write_tags (const string &rules_file, const string &ext)
@@ -353,17 +422,16 @@ int main (int argc, char *argv[])
 {
   if (argc < 3) 
      {
-      cout << "Too few arguments. Read README for the details." << endl;
+      cout << "mtag 2.2" << endl;
+      cout << "mtag: the command line tool for media files tagging" << endl;
+      cout << "by Petr Semiletov" << endl;
+      cout << "https://github.com/psemiletov/mtag" << endl;
+      cout << endl;
+      
+      cout << "Too few arguments. Look at README for the details." << endl;
       return 0;
      }
 
-  cout << "mtag 2.1" << endl;
-  cout << "mtag: the command line tool for media files tagging" << endl;
-  cout << "by Petr Semiletov" << endl;
-  cout << "https://github.com/psemiletov/mtag" << endl;
-          
-  cout << "mtag START" << endl;
- 
   string command = argv[1];
   
   if (command == "apply")
@@ -388,6 +456,13 @@ int main (int argc, char *argv[])
      string templte = argv[2];
      string ext = argv[3];
      files_rename_by_tags (ext, templte);
+  }
+  else
+  if (command == "list")
+    {
+     string templte = argv[2];
+     string ext = argv[3];
+     files_list_tags (ext, templte);
   }
 
   return 0;

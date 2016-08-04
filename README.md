@@ -61,6 +61,18 @@ mtag rename "\#\# - @title" mp3
 mtag rename "\#\# - @artist - @title" mp3  
 mtag rename "\#\# - @fname" mp3  
 
+**To list files tags** by the template, use:
+
+mtag list "template string" extension
+
+Example, write to screen:
+
+mtag rename "\#\# - @artist @title" mp3  
+
+Example, write to the file:
+
+mtag rename "\#\# - @artist @title" mp3  > file.txt
+
 
 RU:
 
@@ -110,6 +122,19 @@ mtag rename "строка шаблона" расширение
 mtag rename "\#\# - @title" mp3   
 mtag rename "\#\# - @artist - @title" mp3  
 mtag rename "\#\# - @fname" mp3  
+
+
+**Для вывода тэгов на экран или в файл**, по шаблону, используйте команду:
+
+mtag list "шаблон" расширение
+
+Пример вывода на экран:
+
+mtag rename "\#\# - @artist @title" mp3  
+
+Пример вывода в файл file.txt:
+
+mtag rename "\#\# - @artist @title" mp3  > file.txt
 
 
 Requirements/Зависимости:
