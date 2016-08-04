@@ -153,14 +153,6 @@ EN: mtag is public domain.
 RU: mtag - общественное достояние.
 
 
-License/Лицуха
------------
-
-EN: mtag is public domain.
-
-RU: mtag - общественное достояние.
-
-
 Credits/Кредиты
 ------------
 
