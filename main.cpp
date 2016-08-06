@@ -420,7 +420,7 @@ void extract_tags (const string &rules_file, const string &ext)
 
 int main (int argc, char *argv[])
 {
-  if (argc < 3) 
+  if (argc < 2) 
      {
       cout << "mtag 2.2" << endl;
       cout << "mtag: the command line tool for media files tagging" << endl;
