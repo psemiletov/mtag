@@ -303,7 +303,7 @@ void write_tags (const string &rules_file, const string &ext)
 }
 
 
-void extract_tags (const string &rules_file, const string &ext)
+void extract_tags (const string &rules_file, const string &ext, const string &required_tag_set)
 {
   std::vector <string> files = files_get_list (current_path(), ext);
   std::sort (files.begin(), files.end());
@@ -321,6 +321,9 @@ void extract_tags (const string &rules_file, const string &ext)
   for (size_t i = 0; i < files.size(); i++)
      {
       string fname = files[i];
+
+      string filename_comment = "#filename: " + fname;
+      vs.push_back(filename_comment);
           
       cout << "process:" << fname << endl;
       
@@ -332,8 +335,8 @@ void extract_tags (const string &rules_file, const string &ext)
       TagLib::String ts;
       
       ts = f.tag()->artist();
-      if (! ts.isEmpty())
-        {
+      if (! ts.isEmpty() || std::string::npos != required_tag_set.find("@artist"))
+        {           
          string pair = "@artist";
          pair += "=";
          pair += ts.toCString(true);
@@ -341,7 +344,7 @@ void extract_tags (const string &rules_file, const string &ext)
         } 
    
       ts = f.tag()->title();
-      if (! ts.isEmpty())
+      if (! ts.isEmpty() || std::string::npos != required_tag_set.find("@title"))
         {
          string pair = "@title";
          pair += "=";
@@ -350,7 +353,7 @@ void extract_tags (const string &rules_file, const string &ext)
         } 
    
       ts = f.tag()->album();
-      if (! ts.isEmpty())
+      if (! ts.isEmpty() || std::string::npos != required_tag_set.find("@album"))
         {
          string pair = "@album";
          pair += "=";
@@ -359,7 +362,7 @@ void extract_tags (const string &rules_file, const string &ext)
         } 
    
       ts = f.tag()->comment();
-      if (! ts.isEmpty())
+      if (! ts.isEmpty() || std::string::npos != required_tag_set.find("@comment"))
         {
          string pair = "@comment";
          pair += "=";
@@ -368,7 +371,7 @@ void extract_tags (const string &rules_file, const string &ext)
         } 
    
       ts = f.tag()->genre();
-      if (! ts.isEmpty())
+      if (! ts.isEmpty() || std::string::npos != required_tag_set.find("@genre"))
         {
          string pair = "@genre";
          pair += "=";
@@ -379,7 +382,7 @@ void extract_tags (const string &rules_file, const string &ext)
       unsigned int x = 0;
    
       x = f.tag()->year();
-      if (x != 0)
+      if (x != 0 || std::string::npos != required_tag_set.find("@year"))
         {
          string pair = "@year";
          pair += "=";
@@ -388,7 +391,7 @@ void extract_tags (const string &rules_file, const string &ext)
         } 
    
       x = f.tag()->track();
-      if (x != 0)
+      if (x != 0 || std::string::npos != required_tag_set.find("@track"))
         {
          string pair = "@track";
          pair += "=";
@@ -447,7 +450,12 @@ int main (int argc, char *argv[])
      cout << "extract" << endl;
      string rules_file = argv[2];
      string ext = argv[3];
-     extract_tags (rules_file, ext);
+     string required_tag_set = "";
+
+     if (argv[4])
+         required_tag_set = argv[4];
+
+     extract_tags (rules_file, ext, required_tag_set);
     }
   else
   if (command == "rename")

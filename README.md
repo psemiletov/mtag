@@ -18,36 +18,51 @@ Example: mtag apply rules.txt ogg
 
 To be tagged correctly, the media files names needs to be named in the alphabetical order, i.e. for example:
 
+```
 01-first-song.ogg  
 01-second-song.ogg  
 01-third-song.ogg  
+```
 
 The rules file must be in UTF-8 encoding. The rules file syntax is simple - the set of blocks with tags. Each block is ended with "\#\#\#". Example:
 
+```
+#filename: 01-first-song.ogg
 @album=testalbum  
 @artist=Megapunkers  
 @title=song one  
 \#\#\#  
+#filename: 01-second-song.ogg  
 @album=testalbum  
 @artist=Megapunkers  
 @title=song two  
 \#\#\#  
+#filename: 01-third-song.ogg  
 @album=testalbum  
 @artist=Megapunkers  
 @title=song three  
 \#\#\#
+```
 
 So the first block will be applied to the first media file at the current directory, the second block to the second file, etc. 
 
 The list of available tags: @artist, @title, @album, @genre, @comment, @year, @track.
 
+The `#filename` tag in block is ignored, it is needed just to understand which media file tags you edit now. Only the file order in directory and block order in rules file matters, not the `#filename` tag.
+
 **To extract the tags** from the media files to the rules file, use the "extract" option:
 
-mtag extract OUTPUTFILE extension
+mtag extract OUTPUTFILE extension <list_of_required_tags>
 
 For example:
 
-mtag extract RULES ogg 
+mtag extract RULES ogg
+
+or
+
+mtag extract RULES mp3 "@artist,@genre,@album"
+
+<list_of_required_tags> is an optional parameter, it defines which tags will be generated even if such data is not presented in source media file, blank values will be used.
 
 **To rename files** according their tags, use:
 
@@ -84,32 +99,47 @@ mtag apply файл_с_правилами расширение
 
 Звуковые файлы должны быть именованы по алфавиту, например:
 
+```
 01-first-song.ogg  
 01-second-song.ogg  
 01-third-song.ogg
+```
 
 Файл правил должен быть в кодировке UTF-8. Синтаксис файла прост - файл состоит из блоков тэгов, и каждый блок оканчивается "\#\#\#". Пример:
 
+```
+#filename: 01-first-song.ogg
 @album=проба  
 @artist=никто  
 @title=песенка первая  
 \#\#\#  
+#filename: 01-second-song.ogg
 @album=проба  
 @artist=никто  
 @title=песенка вторая  
 \#\#\#  
+#filename: 01-third-song.ogg
 @album=testalbum  
 @artist=никто  
 @title=песня третья  
 \#\#\#
+```
 
 Первый блок будет применен к первому файлу (с указанным расширением) в текущем каталоге, второй ко второму, и так далее.
 
 Список доступных тэгов: @artist, @title, @album, @genre, @comment, @year, @track.
 
+Тэг `#filename` в блоке игнонируется, он нужен для понимания того какой медиафайл сейчас редактируется. Только порядок файлов в каталоге и тэгов в списке правил влияет на то какой блок тэгов будет применен к какому файлу, тэг `#filename` ни на что не влияет.
+
 **Чтобы извлечь тэги из файлов в файл правил**, к командной строке надо добавить ключик "extract", например:
 
-mtag extract RULES ogg 
+mtag extract RULES ogg <список_обязательных_тэгов>
+
+или
+
+mtag extract RULES mp3 "@artist,@genre,@album"
+
+<список_обязательных_тэгов> это необязательный параметр, оперделяющий список тэгов, которые будут сгенерированы в файле правил, даже если такие тэги в медиафайле не представлены, значения таких тэгов будут пустыми.
 
 **Чтобы переименовать файлы** согласно записанным в них тэгам, используйте команду:
 
