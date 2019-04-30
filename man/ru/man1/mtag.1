@@ -1,10 +1,10 @@
-.Dd 8/4/10               \" DATE
+.Dd 30/04/2019               \" DATE
 .Dt mtag 1      \" Program name and manual section number
 .Os UNIX
 .Sh НАЗВАНИЕ                 \" Section Header - required - don't modify
 .Nm mtag
-.Nd This line parsed for whatis database.
-.Sh SYNOPSIS             \" Section Header - required - don't modify
+.Nd mtag это утилита для записи тэгов в мультимедийные файлы.
+.Sh ФОРМАТ             \" Section Header - required - don't modify
 .Nm
 .Ar команда                 \" Underlined argument - use .Ar anywhere to underline
 .Ar файл_с_правилами                 \" Underlined argument - use .Ar anywhere to underline
@@ -13,7 +13,7 @@
 .Nm
 mtag это утилита для записи тэгов в мультимедийные файлы. mtag использует файл-шаблон с тэгами, который можно применять к нескольким наборам файлов в разных форматах. Иначе говоря, одним шаблоном вы запишете тэги в варианты альбома в MP3, Ogg, FLAC. mtag также умеет извлекать тэги из файлов (в шаблон) и переименовывать файлы на основе записанных в них тэгов.
 
-.Sh Использование          \" Section Header - required - don't modify
+.Sh ИСПОЛЬЗОВАНИЕ          \" Section Header - required - don't modify
 1. Чтобы записать тэги в файлы, формат командной строки таков:
 
 
@@ -123,4 +123,3 @@ Example, write to the file:
 .br
 
 mtag list "## - @artist @title" mp3  > file.txt
-

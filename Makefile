@@ -12,12 +12,12 @@ MANDIR ?= ${PREFIX}/share/man
 
 install: mtag
 	install -m 0755 mtag $(PREFIX)/bin
-	cp  man/man1/mtag.1 ${DESTDIR}${MANDIR}/man1
-	cp  man/ru/mtag.1 ${DESTDIR}${MANDIR}/ru/man1
+	install man/man1/mtag.1 ${DESTDIR}${MANDIR}/man1
+	install man/ru/man1/mtag.1 ${DESTDIR}${MANDIR}/ru/man1
 
 install-man:
-	cp  man/man1/mtag.1 ${DESTDIR}${MANDIR}/man1
-	cp  man/ru/mtag.1 ${DESTDIR}${MANDIR}/ru/man1
+	install -D man/man1/mtag.1 ${DESTDIR}${MANDIR}/man1
+	install -D man/ru/man1/mtag.1 ${DESTDIR}${MANDIR}/ru/man1
 
 
 uninstall: mtag
