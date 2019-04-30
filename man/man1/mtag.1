@@ -1,0 +1,126 @@
+.Dd 8/4/10               \" DATE
+.Dt mtag 1      \" Program name and manual section number
+.Os UNIX
+.Sh NAME                 \" Section Header - required - don't modify
+.Nm mtag
+.Nd This line parsed for whatis database.
+.Sh SYNOPSIS             \" Section Header - required - don't modify
+.Nm
+.Ar command                 \" Underlined argument - use .Ar anywhere to underline
+.Ar rules_file                 \" Underlined argument - use .Ar anywhere to underline
+.Ar extension                 \" Underlined argument - use .Ar anywhere to underline
+.Sh DESCRIPTION          \" Section Header - required - don't modify
+.Nm
+mtag is the command-line tool for media files tagging. It can use the text file template to tag the multiply sets of media files. You can apply the same template for Ogg, MP3, and FLAC album versions. mtag can also extract the tags to the text file and rename files according to their tags.
+
+.Sh USAGE          \" Section Header - required - don't modify
+1. To tag some files, use the command line:
+
+
+mtag apply rules_file extension
+
+
+Example: mtag apply rules.txt ogg
+
+
+To be tagged correctly, the media files names needs to be named in the alphabetical order, i.e. for example:
+
+
+01-first-song.ogg 
+.br
+01-second-song.ogg 
+.br
+01-third-song.ogg 
+.br
+
+The rules file must be in UTF-8 encoding. The rules file syntax is simple - the set of blocks with tags. Each block is ended with "###". Example:
+
+@album=testalbum
+.br
+@artist=Megapunkers
+.br
+@title=song one
+.br
+###
+.br
+
+@album=testalbum
+.br
+@artist=Megapunkers
+.br
+@title=song two
+.br
+###
+.br
+
+@album=testalbum
+.br
+@artist=Megapunkers
+.br
+@title=song three
+.br
+###
+.br
+
+So the first block will be applied to the first media file at the current directory, the second block to the second file, etc. 
+
+The list of available tags: @artist, @title, @album, @genre, @comment, @year, @track.
+
+The #filename tag in block is ignored, it is needed just to understand which media file tags you edit now. Only the file order in directory and block order in rules file matters, not the #filename tag.
+
+
+2. To extract the tags from the media files to the rules file, use the "extract" option:
+.br
+mtag extract OUTPUTFILE extension [<list of required tags>]
+.br
+For example:
+
+.br
+mtag extract RULES ogg 
+.br
+
+or
+
+
+mtag extract RULES mp3 "@artist,@genre,@album"
+
+
+<list of required tags> is an optional parameter, it defines which tags will be generated even if such data is not presented in source media file, blank values will be used.
+
+
+3. To rename files according their tags, use:
+
+
+mtag rename "template string" extension
+
+
+The template string can contain any tags macros (i.e. @artist, @title, etc.), @fname macro for the original file name, and \# as the numbers counter (the count of \# is the leading zeroes count minus 1);
+
+
+Examples:
+
+
+mtag rename "## - @title" mp3  
+.br
+mtag rename "## - @artist @title" mp3  
+.br
+mtag rename "## - @fname" mp3  
+.br
+
+4. To list files tags by the template, use:
+
+
+mtag list "template string" extension
+
+
+Example, write to screen:
+
+
+mtag list "## - @artist @title" mp3  
+.br
+
+Example, write to the file:
+.br
+
+mtag list "## - @artist @title" mp3  > file.txt
+
