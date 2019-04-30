@@ -26,8 +26,6 @@ using namespace std;
 using namespace TagLib;
 
 
-
-
 string process_counter (const string &val, const char &counter_char, size_t index)
 {
   string result = val;
