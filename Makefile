@@ -7,11 +7,11 @@ LDFLAGS += `pkg-config --libs taglib`
 all:
 	g++ -ltag $(CXXFLAGS) libretta_utils.cpp libretta_string_utils.cpp libretta_pairfile.cpp main.cpp -o mtag
 
-PREFIX ?= /usr/local
-MANDIR ?= ${PREFIX}/share/man
+prefix ?= /usr/local
+MANDIR ?= ${prefix}/share/man
 
 install: mtag
-	install -m 0755 mtag $(PREFIX)/bin
+	install -m 0755 mtag $(prefix)/bin
 	install man/man1/mtag.1.gz ${DESTDIR}${MANDIR}/man1
 	install man/ru/man1/mtag.1.gz ${DESTDIR}${MANDIR}/ru/man1
 
@@ -20,6 +20,6 @@ install-man:
 	install -D man/ru/man1/mtag.1.gz ${DESTDIR}${MANDIR}/ru/man1
 
 uninstall: mtag
-	rm -f $(PREFIX)/bin/mtag
+	rm -f $(prefix)/bin/mtag
 	rm -f ${DESTDIR}${MANDIR}/man1/mtag.1.gz
 	rm -f ${DESTDIR}${MANDIR}/ru/man1/mtag.1.gz	
