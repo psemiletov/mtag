@@ -12,8 +12,8 @@ MANDIR ?= ${prefix}/share/man
 
 install: mtag
 	install -m 0755 mtag $(prefix)/bin
-	install man/man1/mtag.1.gz ${DESTDIR}${MANDIR}/man1
-	install man/ru/man1/mtag.1.gz ${DESTDIR}${MANDIR}/ru/man1
+	install -D man/man1/mtag.1.gz ${DESTDIR}${MANDIR}/man1/mtag.1.gz
+	install -D man/ru/man1/mtag.1.gz ${DESTDIR}${MANDIR}/ru/man1/mtag.1.gz
 
 install-man:
 	install -D man/man1/mtag.1.gz ${DESTDIR}${MANDIR}/man1
