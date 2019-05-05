@@ -107,38 +107,37 @@ string CPairFile::get_string (const string &key,
 CPairFile::CPairFile (const string &fname, bool from_data)
 {
   if (from_data)
-    {
-     stringstream st (fname);
-     string line;
+     {
+      stringstream st (fname);
+      string line;
      
-     while (getline (st, line)) 
-           {
-            if (line.empty())
+      while (getline (st, line)) 
+            {
+             if (line.empty())
                continue;
             
-           // cout << "line: " << line << endl;
+            // cout << "line: " << line << endl;
            
-            size_t pos = line.find ("=");
+             size_t pos = line.find ("=");
       
             //cout << "pos: " << pos << endl;
                  
-            if (pos == string::npos)
-                continue;
+             if (pos == string::npos)
+                 continue;
         
-            if (pos > line.size())
-                continue;
+             if (pos > line.size())
+                 continue;
                     
-            string a = line.substr (0, pos);
-            string b = line.substr (pos + 1, line.size() - pos);
+             string a = line.substr (0, pos);
+             string b = line.substr (pos + 1, line.size() - pos);
 
-            //cout << a << ":" << b << endl;
+             //cout << a << ":" << b << endl;
             
-            values[a] = b;
-           }
+             values[a] = b;
+            }
      
-     return; 
-    }
- 
+      return; //end "from data"
+     }
  
   file_name = fname;
   

@@ -65,7 +65,7 @@ vector <string> files_get_list (const string &path, const string &ext) //ext wit
 
   vector <string> result;
   
-  directory = opendir(path.c_str());
+  directory = opendir (path.c_str());
   if (! directory)
      {
       closedir (directory);
@@ -77,7 +77,7 @@ vector <string> files_get_list (const string &path, const string &ext) //ext wit
           // std::cout << dir_entry->d_name << std::endl;
           string t = dir_entry->d_name;
           if (t.rfind (ext) != string::npos)
-            result.push_back (path + "/" + t);
+             result.push_back (path + "/" + t);
          }
 
    closedir (directory);
