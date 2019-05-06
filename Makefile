@@ -5,7 +5,7 @@ LIBS += `pkg-config --libs taglib`
 LDFLAGS += `pkg-config --libs taglib`
 
 all:
-	g++ -ltag $(CXXFLAGS) libretta_utils.cpp libretta_string_utils.cpp libretta_pairfile.cpp main.cpp -o mtag
+	g++ $(LIBS) $(CXXFLAGS) libretta_utils.cpp libretta_string_utils.cpp libretta_pairfile.cpp main.cpp -o mtag
 
 prefix ?= /usr/local
 MANDIR ?= ${prefix}/share/man
