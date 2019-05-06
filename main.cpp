@@ -420,7 +420,7 @@ int main (int argc, char *argv[])
 {
   if (argc < 2) 
      {
-      cout << "mtag 2.2.3" << endl;
+      cout << "mtag 2.2.4" << endl;
       cout << "mtag: the command line tool for media files tagging" << endl;
       cout << "by Petr Semiletov" << endl;
       cout << "https://github.com/psemiletov/mtag" << endl;
