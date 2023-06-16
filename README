@@ -14,13 +14,13 @@ EN:
 
 mtag apply rules_file extension
 
-Example: mtag apply rules.txt ogg
+Example: mtag apply rules.txt flac
 
 To be tagged correctly, the media files names needs to be named in the alphabetical order, i.e. for example:
 
-01-first-song.ogg 
-01-second-song.ogg 
-01-third-song.ogg 
+01-first-song.flac
+01-second-song.flac
+01-third-song.flac
 
 The rules file must be in UTF-8 encoding. The rules file syntax is simple - the set of blocks with tags. Each block is ended with "###". Example:
 
@@ -28,12 +28,10 @@ The rules file must be in UTF-8 encoding. The rules file syntax is simple - the 
 @artist=Megapunkers
 @title=song one
 ###
-
 @album=testalbum
 @artist=Megapunkers
 @title=song two
 ###
-
 @album=testalbum
 @artist=Megapunkers
 @title=song three
@@ -92,13 +90,13 @@ RU:
 
 mtag apply файл_с_правилами расширение
 
-Пример: mtag apply rules.txt ogg
+Пример: mtag apply rules.txt mp3
 
 Звуковые файлы должны быть именованы по алфавиту, например:
 
-01-first-song.ogg 
-01-second-song.ogg 
-01-third-song.ogg 
+01-first-song.mp3
+01-second-song.mp3
+01-third-song.mp3
 
 Файл правил должен быть в кодировке UTF-8. Синтаксис файла прост - файл состоит из блоков тэгов, и каждый блок оканчивается "###". Пример:
 
@@ -107,12 +105,10 @@ mtag apply файл_с_правилами расширение
 @artist=никто
 @title=песенка первая
 ###
-
 @album=проба
 @artist=никто
 @title=песенка вторая
 ###
-
 @album=testalbum
 @artist=никто
 @title=песня третья
@@ -213,7 +209,7 @@ Credits/Кредиты
 Program site/сайт: https://github.com/psemiletov/mtag
 
 Developers/разработчики:
-Petr Semiletov <tea@list.ru>, http://semiletov.org
+Petr Semiletov <peter.semiletov@gmail.com>, http://semiletov.org
 Additional code/doc by: 
 https://github.com/zargener
 Michael Vetter (http://iodoru.org)

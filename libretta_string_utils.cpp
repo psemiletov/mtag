@@ -51,11 +51,11 @@ vector<string> string_split (string s, const string &delim)
 
 string string_file_load (const string &fname)
 {
- std::ifstream t (fname.c_str());
- std::string s ((std::istreambuf_iterator<char>(t)),
+  std::ifstream t (fname.c_str());
+  std::string s ((std::istreambuf_iterator<char>(t)),
                  std::istreambuf_iterator<char>());
 
- return s;
+  return s;
 }
 
 

@@ -67,10 +67,7 @@ vector <string> files_get_list (const string &path, const string &ext) //ext wit
   
   directory = opendir (path.c_str());
   if (! directory)
-     {
-      closedir (directory);
       return result;
-     }
 
    while (dir_entry = readdir (directory)) 
          {

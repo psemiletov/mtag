@@ -3,7 +3,7 @@
  
  This code is Public Domain.
  
- Peter Semiletov <tea@list.ru>, http://semiletov.org
+ Peter Semiletov <peter.semiletov@gmail.com>, http://semiletov.org
 */
 
 #include <fstream>
@@ -15,7 +15,7 @@
 
 #include "libretta_utils.h"
 #include "libretta_string_utils.h"
-#include "libretta_pairfile.h"
+#include "pairfile.h"
 
 
 #include <fileref.h>
@@ -30,7 +30,7 @@ string process_counter (const string &val, const char &counter_char, size_t inde
 {
   string result = val;
   
-  size_t i = val.find (counter_char); 
+  size_t i = val.find (counter_char);
   
   if (i == string::npos)
        return result;
@@ -249,17 +249,19 @@ void write_tags (const string &rules_file, const string &ext)
        CPairFile pf (vs[i], true);
 
       /*
+       NOT ACTUAL!!!
+
        Nasty hack - the first tag at the first tags block,
        by the mystical reason, cannot be parsed properly.
        There are two medicines from this STRANGE behaviour.
        1. Manually (but not programmatically from mtag)
        add the obsolete first line to the RULES file.
+
        2. Add the obsolete key-val to the tags structure.
+                 //    pf.values["@testkey"] = "testvalue";
+
       */
 
-      //TODO: check CPairFile::CPairFile for the bug described obove
-
-       pf.values["@testkey"] = "testvalue";
 
        for (auto & kvp : pf.values)
            {
@@ -420,7 +422,7 @@ int main (int argc, char *argv[])
 {
   if (argc < 2) 
      {
-      cout << "mtag 2.2.4" << endl;
+      cout << "mtag 2.2.5" << endl;
       cout << "mtag: the command line tool for media files tagging" << endl;
       cout << "by Petr Semiletov" << endl;
       cout << "https://github.com/psemiletov/mtag" << endl;
@@ -441,17 +443,17 @@ int main (int argc, char *argv[])
      }
   else
   if (command == "extract")
-    {
-     cout << "extract" << endl;
-     string rules_file = argv[2];
-     string ext = argv[3];
-     string required_tag_set = "";
+     {
+      cout << "extract" << endl;
+      string rules_file = argv[2];
+      string ext = argv[3];
+      string required_tag_set = "";
 
-     if (argv[4])
-         required_tag_set = argv[4];
+      if (argv[4])
+          required_tag_set = argv[4];
 
-     extract_tags (rules_file, ext, required_tag_set);
-    }
+      extract_tags (rules_file, ext, required_tag_set);
+     }
   else
   if (command == "rename")
      {
