@@ -25,15 +25,15 @@ To be tagged correctly, the media files names needs to be named in the alphabeti
 The rules file must be in UTF-8 encoding. The rules file syntax is simple - the set of blocks with tags. Each block is ended with "###". Example:
 
 @album=testalbum
-@artist=Megapunkers
+@artist=SomeRocker
 @title=song one
 ###
 @album=testalbum
-@artist=Megapunkers
+@artist=SomeRocker
 @title=song two
 ###
 @album=testalbum
-@artist=Megapunkers
+@artist=SomeRocker
 @title=song three
 ###
 
