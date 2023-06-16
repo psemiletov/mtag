@@ -63,7 +63,7 @@ mtag extract RULES mp3 "@artist,@genre,@album"
 
 mtag rename "template string" extension
 
-The template string can contain any tags macros (i.e. @artist, @title, etc.), @fname macro for the original file name, and \# as the numbers counter (the count of \# is the leading zeroes count minus 1);
+The template string can contain any tags macros (i.e. @artist, @title, etc.), @fname macro for the original file name, and # as the numbers counter (the count of # is the leading zeroes count minus 1);
 
 Examples:
 
